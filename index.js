@@ -10,11 +10,12 @@ let obj = {};
 dbColumns.forEach((column, index) => {
     const value = fileValues[index]
     obj = { ...obj, [column]: value }
+
 });
 
 
 const date = new Date();
-const currentMonth = date.getMonth() + 1;
+const currentMonth = date.getMonth() + 2;
 
 
 if (currentMonth == 4) {
