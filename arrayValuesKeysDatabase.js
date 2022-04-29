@@ -79,7 +79,8 @@ const dbColumns = [
     'MARGEM_NEGOCIACAO',
     'DESCRICAO_PROJETO',
     'AJUSTE_PED',
-    'LOCALIDADE_CLIENTE'
+    'LOCALIDADE_CLIENTE',
+    "date"
 ]
 
 module.exports = dbColumns

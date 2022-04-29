@@ -15,13 +15,14 @@ dbColumns.forEach((column, index) => {
 
 
 const date = new Date();
-const currentMonth = date.getMonth() + 2;
+const currentMonth = date.getMonth() + 1;
 
 
 if (currentMonth == 4) {
     // UPDATE
     const pk = obj["PRJ"];
-    database.where({PRJ: pk}).update(obj).table("gestao")
+    obj["date"]=currentMonth;
+    database.where({PRJ: pk}).update(obj).table("gestao_2")
     .then(obj => {
         console.log("UPDATE COM SUCESSO");
     }).catch(err => {
@@ -29,7 +30,7 @@ if (currentMonth == 4) {
     });
 } else {
     // INSERT
-    database.insert(obj).into("gestao")
+    database.insert(obj).into("gestao_2")
         .then(obj => {
             console.log("DADOS INSERIDO");
         }).catch(err => {
