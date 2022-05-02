@@ -14,7 +14,7 @@ dbColumns.forEach((column, index) => {
 });
 a
 const date = new Date();
-const currentMonth = date.getMonth() + 1;
+const currentMonth = date.getMonth() + 2;
 
 
 if (currentMonth != obj["DATE"]) {
