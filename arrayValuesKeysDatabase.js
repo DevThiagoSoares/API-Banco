@@ -80,7 +80,7 @@ const dbColumns = [
     'DESCRICAO_PROJETO',
     'AJUSTE_PED',
     'LOCALIDADE_CLIENTE',
-    "date"
+    "DATE"
 ]
 
 module.exports = dbColumns

@@ -12,28 +12,35 @@ dbColumns.forEach((column, index) => {
     obj = { ...obj, [column]: value }
 
 });
-
-
+a
 const date = new Date();
 const currentMonth = date.getMonth() + 1;
 
 
-if (currentMonth == 4) {
-    // UPDATE
-    const pk = obj["PRJ"];
-    obj["date"]=currentMonth;
-    database.where({PRJ: pk}).update(obj).table("gestao_2")
-    .then(obj => {
-        console.log("UPDATE COM SUCESSO");
+if (currentMonth != obj["DATE"]) {
+    // INSERT
+    obj["DATE"] = currentMonth;
+    database.insert(obj).into("gestao_2")
+    .then(Obj => {
+        console.log("DADOS INSERIDO");
     }).catch(err => {
         console.log(err);
     });
 } else {
-    // INSERT
-    database.insert(obj).into("gestao_2")
-        .then(obj => {
-            console.log("DADOS INSERIDO");
-        }).catch(err => {
-            console.log(err);
-        });
+    // UPDATE
+    const titleProject = obj["PRJ"];
+    database.where({PRJ: titleProject}).update(obj).table("gestao_2")
+    .then(Obj => {
+        console.log("UPDATE COM SUCESSO");
+    }).catch(err => {
+        console.log(err);
+    });
+
 }
+// 
+console.log("currentMonth",currentMonth, "/ DATE", obj["DATE"])
+
+
+// validar o relatorio mesnsal no banco
+// verificar maneira de usar varias pastar na aplicação
+
