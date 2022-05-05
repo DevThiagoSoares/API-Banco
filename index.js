@@ -1,7 +1,7 @@
 const database = require('./conectionDataBase');
 const data = require('./dados.json');
 const dbColumns = require('./arrayValuesKeysDatabase');
-
+const parserXLSMtoJson = require('./parserXLSMtoJson');
 
 const fileValues = Object.values(data[0]);
 
@@ -10,37 +10,42 @@ let obj = {};
 dbColumns.forEach((column, index) => {
     const value = fileValues[index]
     obj = { ...obj, [column]: value }
-
 });
-a
-const date = new Date();
-const currentMonth = date.getMonth() + 2;
 
 
-if (currentMonth != obj["DATE"]) {
-    // INSERT
-    obj["DATE"] = currentMonth;
-    database.insert(obj).into("gestao_2")
-    .then(Obj => {
-        console.log("DADOS INSERIDO");
+date = new Date();
+const currentDay = date.getDay() + 1;
+const currentMonth = date.getMonth() + 1;
+
+obj["DATE"] = currentMonth;
+console.log(obj["DATE"])
+const titleProject = obj["PRJ"];
+// console.log(obj["PRJ"])
+// console.log(obj)
+
+
+database.select().where({ prj: obj["PRJ"], date: obj["DATE"] }).table("gestao_2")
+    .then(abc => {
+        console.log("aqui", abc)
+
+        if (abc.length === 0) {
+            console.log(abc.length)
+            database.insert(obj).into("gestao_2")
+                .then(() => {
+                    console.log("DADOS INSERIDO");
+                }).catch(err => {
+                    console.log(err);
+                });
+        } else {
+            console.log("caiu no else")
+            database.where({ prj: obj["PRJ"], date: obj["DATE"] }).update(obj).into("gestao_2")
+                .then(() => {
+                    console.log(abc);
+                    console.log("DADOS ATUALIZADO");
+                }).catch(err => {
+                    console.log(err);
+                });
+        }
     }).catch(err => {
         console.log(err);
     });
-} else {
-    // UPDATE
-    const titleProject = obj["PRJ"];
-    database.where({PRJ: titleProject}).update(obj).table("gestao_2")
-    .then(Obj => {
-        console.log("UPDATE COM SUCESSO");
-    }).catch(err => {
-        console.log(err);
-    });
-
-}
-// 
-console.log("currentMonth",currentMonth, "/ DATE", obj["DATE"])
-
-
-// validar o relatorio mesnsal no banco
-// verificar maneira de usar varias pastar na aplicação
-

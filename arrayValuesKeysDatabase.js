@@ -69,6 +69,7 @@ const dbColumns = [
     'IMPOSTOS',
     'ISS',
     'TAXAS',
+    'CUSTOS_INCORRIDOS',
     'CUSTO_FINANCEIRO',
     'CUSTOS_OPERACIONAIS',
     'VERBA_MARKETING',
