@@ -49,4 +49,3 @@ database.select().where({ prj: obj["PRJ"], date: obj["DATE"] }).table("gestao_2"
     }).catch(err => {
         console.log(err);
     });
-    
