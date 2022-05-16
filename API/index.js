@@ -1,9 +1,6 @@
-// buscar forma de usar api de atividades do google driver
-
 const fs = require('fs');
 const readline = require('readline');
 const { google } = require('googleapis');
-const driveactivity = google.driveactivity('v2');
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/drive.activity.readonly'];
